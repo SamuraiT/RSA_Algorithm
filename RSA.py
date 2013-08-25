@@ -196,9 +196,9 @@ def decode(decode_key,cipher):
 		message += chr( code )
 	return message
 
-def find_decode_key( public_key ):
+def private_key( public_key ):
 	"""
-	find decode key (d) from publci key (e)
+	find private key (d) from publci key (e)
 	public_key: (e,n) 
 	"""
 	e = public_key[0]
@@ -213,7 +213,7 @@ def decode_auto( public_key, cipher ):
 	public_key: (e,n)
 	cipher: cipher list(should be like this: ['123','456',....])
 	"""
-	decode_key = find_decode_key(public_key)
+	decode_key = private_key(public_key)
 	return decode( decode_key, cipher)
 	
 
@@ -272,9 +272,9 @@ if __name__ == '__main__':
 			print ' '.join(t),'\n'
 		#decoding
 		elif enter == 'd':
-			enter = raw_input("Do you know Deocde key ? (y or n): ")
+			enter = raw_input("Do you know private key ? (y or n): ")
 			if enter == 'y':
-				decode_key = eval( raw_input('Enter decode key like this: (d,n): ')	 )
+				decode_key = eval( raw_input('Enter private key like this: (d,n): ')	 )
 				if not isinstance(decode_key,tuple):
 					print 'you have to Enter tuple type: (e,n)'
 					break
@@ -283,7 +283,7 @@ if __name__ == '__main__':
 				if not isinstance(public_key,tuple):
 					print 'you have to Enter tuple type: (e,n)'
 					break
-				decode_key = find_decode_key(public_key)
+				decode_key = private_key(public_key)
 			cipher = raw_input('Enter a cipher: ')
 			cipher = cipher.split()
 			mes = decode(decode_key, cipher)
