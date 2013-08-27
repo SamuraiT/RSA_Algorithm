@@ -6,8 +6,7 @@ RSA is a python module which includes those functions:
 - generating a private-key(d,n) by assigning publi-key(e,n) <code>private_key()</code>
 - decryptin a message by private-key<code>decode()</code>
 
-There are other functions that I made. including 
-<code>LCM()</code> which stands for Least Common Multiple, <code>GCD()</code> standing for 
+There are other functions, including <code>LCM()</code> which stands for Least Common Multiple, <code>GCD()</code> standing for 
 Greatest Common Divisor...etc
 
 
