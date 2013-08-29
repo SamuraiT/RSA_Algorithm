@@ -9,7 +9,8 @@ RSA is a python module which includes those functions:
 There are other functions, including <code>LCM()</code> which stands for Least Common Multiple, <code>GCD()</code> standing for 
 Greatest Common Divisor...etc
 
-See details [specification]() (I will upload soon)
+After clone my RSA Algorithm modlue, write this on terminal:
+<code>pydoc -w RSA</code>. you will get *specification*
 
 Example
 ----------------------
