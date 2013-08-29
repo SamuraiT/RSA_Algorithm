@@ -10,7 +10,7 @@ from random import randint
 from math import sqrt
 
 ########################## encoding ##############################
-def generate_public_key(max = 15):
+def generate_public_key(limit = 30):
 	"""
 	this function generates a public key by itself
 	and returns a public key tuple:(e,n)
@@ -18,7 +18,7 @@ def generate_public_key(max = 15):
 	"""
 	n  = 0
 	while n < 122:
-		pq = generate_prime(max)
+		pq = generate_prime(limit)
 		p = pq[0]
 		q = pq[1]
 		n = p * q
@@ -136,17 +136,17 @@ def is_coprime(n,m):
 	return GCD(n,m) == 1
 
 
-def generate_prime(max = 15):
+def generate_prime(limit = 30):
 	"""
-	generate a prime number ranging from 2 to max
-	max: the max of range. you can change this
+	generate a prime number ranging from 2 to limit
+	limit: the max of range. you can change this
 	
-	return a random prime number between 2 and max
+	return a random prime number between 2 and limit
 
 	"""
 	pq = []
 	while not len(pq) == 2:
-		ran =  randint(2,max)
+		ran =  randint(2,limit)
 		if is_prime( ran ):
 			if len(pq) ==1:
 				if not ran == pq[0]:
@@ -189,6 +189,8 @@ def decode(decode_key,cipher):
 	if not isinstance(decode_key,tuple):
 		print 'assign tuple type deocde key. it should be this: (d,n) \n d: int type, n:int type(n = p * q) '
 		return ''
+	if isinstance(cipher,str):
+		cipher = cipher.split()
 	#decoded_list = encode( decode_key, cipher )
 	message = ''
 	for item in cipher:
@@ -212,6 +214,7 @@ def decode_auto( public_key, cipher ):
 	and return decoded message
 	public_key: (e,n)
 	cipher: cipher list(should be like this: ['123','456',....])
+		but also, accept string like tis: 123 456 789 ....
 	"""
 	decode_key = private_key(public_key)
 	return decode( decode_key, cipher)
@@ -256,9 +259,9 @@ if __name__ == '__main__':
 		if enter == 'e':
 			g_or_e  = raw_input('would you like to generate publick key( g ) or you\'d just encode( e ): ')
 			if g_or_e == 'g':
-				max = raw_input('Enter the range of prime numbers(p and q): ')
+				limit = raw_input('Enter the range of prime numbers(p and q): ')
 				print
-				public_key = generate_public_key( int( max) )
+				public_key = generate_public_key( int( limit) )
 				print '(e,n) = ',public_key,'\n'
 			elif g_or_e == 'e':
 				public_key = raw_input('Enter a public_key like this: (e,n) ')
